@@ -1,0 +1,24 @@
+{% extends "base" %}
+{% block main %}
+<div class="content container">
+  <h1>
+    {{ Title -}}
+  </h1>
+  <ul class="posts">
+  {% for page in  Data.Pages -%}
+    <li>
+      {% if page.Draft -%}<span><em>Draft</em> - <span>{% endif -%}
+      <a href="{{ page.Permalink }}">{{ page.Title }}</a>
+    {% if page.Params.categories -%}
+    &middot;
+    {% for category in page.Params.categories -%}<a class="label" href="{{ "/categories/" | absURL }}{{ category | urlize }}">{{ category }}</a>{% endfor -%}
+    {% endif -%}
+    {% if page.Params.tags -%}
+    &middot;
+    {% for tag in page.Params.tags %}<a class="label" href="{{ "/tags/" | absURL }}{{ tag | urlize }}">{{ tag }}</a>{% endfor -%}
+    {% endif -%}
+    &middot; <time>{{ page.Date.Format("Jan 2, 2006") }}</time></li>
+  {% endfor -%}
+  </ul>
+</div>
+{% endblock %}

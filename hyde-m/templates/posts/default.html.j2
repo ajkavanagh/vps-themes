@@ -1,0 +1,10 @@
+{% extends "base" %}
+{% block main %}
+<!-- this is the posts/default.html.j2 template-->
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">{{ Page.Title }}</h1>
+    {{ Page.content() }}
+  </div>
+</div>
+{% endblock %}
