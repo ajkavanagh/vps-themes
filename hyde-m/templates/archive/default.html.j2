@@ -4,12 +4,12 @@
 <div class="content container">
   <div class="post">
     <h1 class="post-title">{% if Page.Draft -%}DRAFT - {% endif -%}{{ Page.Title }}</h1>
-      <span class="post-date">{{ dateformat(Page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%}&nbsp;&middot; {{ Page.readingTime() }} minute read{% endif -%}{% if Site.Params.DisqusShortname -%} &middot; <a href="{{ Page.Permalink }}#disqus_thread">Comments</a>{% endif -%}
+      <span class="post-date">{{ dateformat(Page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%}&nbsp;&middot; {{ Page.readingTime() }} minute read{% endif -%}&nbsp;(archived post)
 
-      {% if Page.Category -%}
+      {% if Page.Categories -%}
       <br/>
-      Category:&nbsp;
-      <a class="label" href="{{ categoryUrlFor(Page.Category) }}">{{ Page.Category }}</a>
+      {% if length(Page.Categories) == 1 -%}Category{% else -%}Categories{% endif -%}:&nbsp;
+      {% for category in Page.Categories -%}<a class="label" href="{{ categoryUrlFor(category) }}">{{ category }}</a>{% endfor -%}
       {% endif %}
 
       {% if Page.Tags -%}

@@ -1,17 +1,17 @@
 {% extends "base" %}
 {% block main %}
 <div class="content container">
-  <h1>
-    {{ Page.Title -}}
-  </h1>
+  {#<div class="post">#}
+  {{ Page.content() -}}
+  {#</div>#}
   <ul class="posts">
   {% for page in  sort(Pages, by="Date", reverse=True) -%}
     <li>
       {% if page.Draft -%}<span><em>Draft</em> - <span>{% endif -%}
       <a href="{{ page.Permalink }}">{{ page.Title }}</a>
-      {% if page.Category -%}
+      {% if page.Categories -%}
       &middot;
-      <a class="label" href="{{ categoryUrlFor(page.Category) }}">{{ page.Category }}</a>
+      {% for category in page.Categories -%}<a class="label" href="{{ categoryUrlFor(category) }}">{{ category }}{% endfor -%}</a>
       {% endif %}
       {% if page.Tags -%}
       &middot;

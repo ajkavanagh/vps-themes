@@ -7,13 +7,13 @@
         {{ content() }}
     {% endif -%}
   <div class="posts">
-    {% set paginator = paginate(selectPages(), size=5) %}
-    {% for page in paginator.Items -%}
+    {% set pages = selectPages("/posts/") -%}
+    {% for page in sort(pages, by="Date", reverse=true)[0:4] -%}
     <div class="post">
       <h1 class="post-title">
         <a href="{{ page.Permalink }}">{% if page.Draft -%}DRAFT - {% endif -%}{{ page.Title }}</a>
       </h1>
-      <span class="post-date">{{ dateformat(page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%} &middot; {{ page.ReadingTime }} minute read{% endif -%}{% if Site.Params.DisqusShortname -%} &middot; <a href="{{ page.Permalink }}#disqus_thread">Comments</a>{% endif -%}
+      <span class="post-date">{{ dateformat(page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%} &middot; {{ page.readingTime() }} minute read{% endif -%}{% if Site.Params.DisqusShortname -%} &middot; <a href="{{ page.Permalink }}#disqus_thread">Comments</a>{% endif -%}
 
       {% if page.Category -%}
       <br/>
@@ -39,9 +39,10 @@
       {% endif -%}
     </div>
     {% endfor -%}
-    {# 'pagination.html' will use the variables from paginator object #}
-    {# {% include "pagination" %} #}
   </div>
+  {% if length(pages) > 5 -%}
+  <p><a href="/posts/">More posts ...</a></p>
+  {% endif -%}
 </div>
 
 {% if Site.DisqusShortname -%}
