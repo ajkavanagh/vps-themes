@@ -21,6 +21,9 @@
   {% if Site.Params.highlight -%}<link rel="stylesheet" href="{{ "/css/highlight/" | absURL }}{{ Site.Params.highlight }}.css" />{% endif %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  {% if Site.skylightStyle -%}<style>
+  {{ styleToCSS(Site.skylightStyle) }}
+  </style>{% else -%}<!-- no style provided -->{% endif %}
   {% endblock -%}
 
   <!-- Icons -->
@@ -30,7 +33,7 @@
   <!-- RSS -->
   {% set siteTitle = Site.Params.title -%}
   {% set authorName = Site.Params.Author -%}
-  {% if Data.RSSLink -%}<link href="{{ Data.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ siteTitle }} &middot; {{ authorName }}" />{% endif -%}
+  {% if Site.RSSLink -%}<link href="{{ Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ siteTitle }} &middot; {{ authorName }}" />{% endif -%}
 
   <meta name="description" content="{% if Page.Description -%}{{ Page.Description }}{% else -%}{{ Site.Params.defaultDescription }}{% endif -%}" />
   <meta name="keywords" content="{% if Page.Params.keywords -%}{% for item in enumerate(Page.Params.keywords) -%}{% if item.index > 0 -%},{% endif -%}{{ item.item }}{% endfor -%}{% else %}{{ Site.Params.defaultKeywords }}{% endif -%}" />
