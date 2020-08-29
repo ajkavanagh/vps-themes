@@ -19,6 +19,10 @@
       {% endif -%}
       <br>Words: {{ Page.wordCount() -}}</span>
 
+      {% if Page.Description -%}
+      <p><em>{{ Page.Description }}</em></p>
+      {% endif -%}
+
     {{ Page.content() }}
   </div>
 </div>
