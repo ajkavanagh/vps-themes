@@ -21,8 +21,8 @@
   {% if Site.Params.highlight -%}<link rel="stylesheet" href="{{ "/css/highlight/" | absURL }}{{ Site.Params.highlight }}.css" />{% endif %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  {% if Site.skylightStyle -%}<style>
-  {{ styleToCSS(Site.skylightStyle) }}
+  {% if Site.SkylightStyle -%}<style>
+  {{ styleToCSS(Site.SkylightStyle) }}
   </style>{% else -%}<!-- no style provided -->{% endif %}
   {% endblock -%}
 
