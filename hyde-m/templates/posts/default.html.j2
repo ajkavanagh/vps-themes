@@ -4,7 +4,7 @@
 <div class="content container">
   <div class="post">
     <h1 class="post-title">{% if Page.Draft -%}DRAFT - {% endif -%}{{ Page.Title }}</h1>
-      <span class="post-date">{{ dateformat(Page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%}&nbsp;&middot; {{ Page.readingTime() }} minute read{% endif -%}{% if Site.Params.DisqusShortname -%} &middot; <a href="{{ Page.Permalink }}#disqus_thread">Comments</a>{% endif -%}
+    <span class="post-date">{{ dateformat(Page.Date, "%h %-d, %Y") }}{% if Site.Params.ReadingTime -%}&nbsp;&middot; {{ Page.readingTime() }} minute read{% endif -%}{% if Page.Comments and Site.Params.useIsso %} &middot; <a href="{{ absURL(Page.Permalink) }}/#isso-thread">Comments</a>{% endif -%}
 
       {% if Page.Category -%}
       <br/>
@@ -24,6 +24,15 @@
       {% endif -%}
 
     {{ Page.content() }}
+
+    {% if Site.Params.useIsso %}
+    {% if Page.Comments %}
+    <h2>Comments:</h2>
+    <section id="isso-thread"></section>
+    {% else %}
+    <p><em>Comments are disabled for this page.</em></p>
+    {% endif %}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

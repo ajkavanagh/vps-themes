@@ -55,5 +55,6 @@
 
 {% if Site.Params.highlight -%}<script src="{{ "/js/highlight.pack.js" | absURL }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>{% endif -%}
+{% if Site.Params.useIsso -%}<script data-isso="{{ Site.Params.dataIsso }}" src="{{ Site.Params.jsSrcIsso }}"></script>{% endif %}
 </body>
 </html>
