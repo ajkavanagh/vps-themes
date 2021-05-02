@@ -1,4 +1,18 @@
 {% extends "base" %}
+{% block opengraph -%}
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ Page.Title }}" />
+{% if Page.Description -%}
+<meta property="og:description" content="{{ Page.Description }}" />
+{% endif -%}
+{% if Site.Params.Title -%}
+<meta property="og:site_name" content="{{ Site.Params.Title }}" />
+{% endif -%}
+<meta property="og:url" content="{{ Page.Permalink | absURL }}" />
+{% if Page.Params.OpenGraph.Image -%}
+<meta property="og:image" content="{{ Page.Params.OpenGraph.Image }}"
+{% endif -%}
+{% endblock -%}
 {% block main %}
 <!-- this is the posts/default.html.j2 template-->
 <div class="content container">
